@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:root {
+    --primary-color: #e98a15;
+    --glider-color: rgba(21, 109, 233, 0.3); /* Orange color with 0.3 transparency */
+    --tab-text-color: #000;
+    --tab-text-color-active: #fff;
+}
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+body {
+    /*background: linear-gradient(135deg, rgba(0, 255, 204, 0.3), rgba(0, 94, 255, 0.367), rgba(179, 93, 255, 0.3));*/
+    background-image: url(i_shipBackground.png);
+    background-size: 300% 300%;
+    /*animation: gradientAnimation 5s ease infinite;*/
+    object-fit: contain;
+    background-size: 100%;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    background-color: #003366; /* Dark blue color */
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+header .logo {
+    position: absolute;
+    left: 40px;
+    padding: 0.5em 1em;
+    height: 100px; /* Increased height for larger logo */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px; /* Space from top */
+    padding-bottom: 40px; /* Space at bottom */
+    text-align: center;
+    width: 100%;
+}
+
+.tabs {
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.15), 0 6px 12px 0 rgba(0, 0, 0, 0.15);
+    padding: 0.75rem;
+    border-radius: 99px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 54px;
+    width: 200px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+    color: var(--tab-text-color); /* Default text color */
+    position: relative;
+    z-index: 2; /* Ensure text is above the glider */
+}
+
+.tab.active {
+    color: var(--tab-text-color-active); /* Text color when active */
+}
+
+.glider {
+    position: absolute;
+    height: 54px;
+    width: 200px;
+    background-color: var(--glider-color);
+    z-index: 1; /* Layer glider below the text */
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+}
+
+input[id="radio-1"]:checked ~ .glider {
+    transform: translateX(0);
+}
+
+input[id="radio-2"]:checked ~ .glider {
+    transform: translateX(100%);
+}
+
+input[id="radio-3"]:checked ~ .glider {
+    transform: translateX(200%);
+}
+
+input[id="radio-1"]:checked ~ .tabs .tab:nth-of-type(1),
+input[id="radio-2"]:checked ~ .tabs .tab:nth-of-type(2),
+input[id="radio-3"]:checked ~ .tabs .tab:nth-of-type(3) {
+    color: var(--tab-text-color-active); /* Text color when glider is on the tab */
+}
+
+#registration-form {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Dimmed background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#registration-form h2 {
+    margin-top: 0;
+    color: #fff; /* Title color */
+}
+
+#registration-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#registration-form label {
+    margin-top: 10px;
+    display: block;
+    color: #fff; /* Label color */
+}
+
+#registration-form input[type="text"],
+#registration-form select {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 2em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px; /* Limit width */
+}
+
+#tech-stack-options {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+#tech-stack-options label {
+    margin-right: 10px;
+    color: #fff; /* Checkbox label color */
+    display: flex;
+    align-items: center;
+}
+
+#tech-stack-options input[type="checkbox"] {
+    margin-right: 5px;
+    accent-color: var(--primary-color); /* Checkbox color */
+    width: 20px; /* Size of the checkbox */
+    height: 20px; /* Size of the checkbox */
+    border-radius: 50%; /* Circular checkboxes */
+    appearance: none; /* Remove default checkbox styling */
+    border: 2px solid #fff; /* Border color */
+    background: #fff; /* Background color */
+}
+
+#tech-stack-options input[type="checkbox"]:checked {
+    background: var(--primary-color); /* Background color when checked */
+}
+
+/* Ensure only the first three options are on the first line */
+#tech-stack-options .first-line {
+    flex: 1 0 30%; /* Flex-grow, flex-shrink, and flex-basis */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure the remaining options start on the next line */
+#tech-stack-options .second-line {
+    flex: 1 0 30%; /* Flex-grow, flex-shrink, and flex-basis */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px; /* Space between lines */
+}
+
+.button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #d77b14; /* Slightly darker shade for hover effect */
+}
+
+@media (max-width: 700px) {
+    .tabs {
+        transform: scale(0.6);
+    }
+}
